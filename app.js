@@ -1,5 +1,5 @@
 // Isi API_URL dengan URL Supabase Edge Function setelah deployment.
-const API_URL = "GANTI_DENGAN_URL_SUPABASE_FUNCTION";
+const API_URL = "https://nwtpsdwpvrowweuxlkse.supabase.co/functions/v1/tryout-api";
 const $ = (id) => document.getElementById(id);
 let attemptId = null, answers = Array(30).fill(null), current = 0, seconds = 3600, timerId = null, submitting = false, startedAt = 0;
 function showMessage(id, text, isError=true){ const el=$(id); el.textContent=text; el.style.color=isError?"#b91c1c":"#166534"; }
