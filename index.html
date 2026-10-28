@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tryout TKA SD - Bahasa Indonesia</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="wrap"><h1>Tryout TKA SD</h1><p>Bahasa Indonesia · 30 soal</p></div></header>
+<main class="wrap">
+<section id="loginCard" class="card">
+<h2>Masuk Tryout</h2><p>Isi identitas dengan benar dan masukkan password bersama yang diberikan guru.</p>
+<form id="startForm"><label>Asal sekolah<input id="school" maxlength="150" required placeholder="Contoh: SD Negeri 1 Ungaran"></label>
+<label>Nama lengkap<input id="studentName" maxlength="100" required autocomplete="name" placeholder="Nama siswa"></label>
+<label>Nomor absen<input id="attendance" type="number" min="1" max="99" required placeholder="Nomor absen"></label>
+<label>Password tryout<input id="studentPassword" type="password" required autocomplete="current-password" placeholder="Password dari guru"></label>
+<button class="primary" type="submit">Mulai Tryout</button></form><p id="loginMessage" class="message" role="status"></p>
+</section>
+<section id="quizCard" class="card hidden">
+<div class="quizHead"><div><span class="eyebrow">PESERTA</span><strong id="who"></strong></div><div class="timer" id="timer">60:00</div></div>
+<div class="progressLine"><div id="progressBar"></div></div><p id="questionCount" class="muted"></p><h2 id="questionText"></h2>
+<div id="choices" class="choices"></div>
+<div id="questionNav" class="questionNav"></div>
+<div class="actions"><button id="prevBtn" class="secondary" type="button">← Sebelumnya</button><button id="nextBtn" class="primary" type="button">Berikutnya →</button><button id="submitBtn" class="danger" type="button">Kumpulkan</button></div>
+<p id="quizMessage" class="message" role="status"></p>
+</section>
+<section id="resultCard" class="card hidden"><h2>Tryout Selesai</h2><p id="resultText"></p><p class="muted">Nilai telah dikirim untuk direkap oleh guru.</p><h3>Pembahasan</h3><div id="reviewList"></div><button class="secondary" onclick="location.reload()">Kembali ke halaman awal</button></section>
+</main><footer><div class="wrap">Tryout TKA SD · Gunakan dengan pengawasan guru</div></footer>
+<script src="questions.js"></script><script src="app.js"></script>
+</body></html>
