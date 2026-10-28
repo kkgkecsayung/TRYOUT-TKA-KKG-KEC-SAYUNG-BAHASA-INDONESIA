@@ -1,4 +1,4 @@
-# Tryout TKA SD — Bahasa Indonesia (Password Bersama)
+# Tryout TKA SD KKG KECAMATAN SAYUNG — Bahasa Indonesia
 
 Website berisi 30 soal, identitas siswa (asal sekolah, nama, nomor absen), password bersama, timer 60 menit, navigasi soal, skor otomatis, pembahasan, login guru, rekap nilai online, dan ekspor CSV.
 
