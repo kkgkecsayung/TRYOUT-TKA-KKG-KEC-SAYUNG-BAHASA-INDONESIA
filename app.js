@@ -1,8 +1,21 @@
 // Isi API_URL dengan URL Supabase Edge Function setelah deployment.
 const API_URL = "https://nwtpsdwpvrowweuxlkse.supabase.co/functions/v1/tryout-api";
 const $ = (id) => document.getElementById(id);
-let attemptId = null, answers = Array(30).fill(null), current = 0, seconds = 3600, timerId = null, submitting = false, startedAt = 0;
-function showMessage(id, text, isError=true){ const el=$(id); el.textContent=text; el.style.color=isError?"#b91c1c":"#166534"; }
+
+let attemptId = null, 
+    answers = Array(30).fill(null), 
+    current = 0, 
+    seconds = 3600, 
+    timerId = null, 
+    submitting = false, 
+    startedAt = 0;
+
+function showMessage(id, text, isError=true){ 
+  const el=$(id); 
+  el.textContent=text; 
+  el.style.color=isError?"#b91c1c":"#166534"; 
+}
+
 async function api(payload){
   if(API_URL.startsWith("GANTI_")) throw new Error("Website belum dikonfigurasi. Ikuti panduan README.md.");
   const res=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
@@ -10,6 +23,7 @@ async function api(payload){
   if(!res.ok) throw new Error(data.error||"Permintaan gagal.");
   return data;
 }
+
 $("startForm").addEventListener("submit",async(e)=>{
  e.preventDefault();
  const name=$("studentName").value.trim(), school=$("school").value.trim(), attendance=Number($("attendance").value), password=$("studentPassword").value;
@@ -24,39 +38,233 @@ $("startForm").addEventListener("submit",async(e)=>{
  }catch(err){showMessage("loginMessage",err.message);}
  finally{btn.disabled=false;}
 });
+
 function tick(){seconds--; if(seconds<=0){seconds=0;updateTimer();clearInterval(timerId);submitQuiz(true);return;}updateTimer();}
 function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");$("timer").textContent=`${m}:${s}`;if(seconds<=300)$("timer").style.background="#fee2e2";}
+
+// ==========================================
+// RENDER SOAL SESUAI TIPE (DIRUBAH)
+// ==========================================
 function renderQuestion(){
- const item=window.TRYOUT_QUESTIONS[current]; $("questionCount").textContent=`Soal ${current+1} dari 30`; $("questionText").textContent=item.q;
- const labels=["A","B","C","D"]; $("choices").replaceChildren();
- item.a.forEach((choice,i)=>{const label=document.createElement("label");label.className="choice"+(answers[current]===i?" selected":"");
- const input=document.createElement("input");input.type="radio";input.name="answer";input.value=i;input.checked=answers[current]===i;
- input.addEventListener("change",()=>{answers[current]=i;renderQuestion();renderNav();updateProgress();});
- const span=document.createElement("span");span.textContent=`${labels[i]}. ${choice}`;label.append(input,span);$("choices").append(label);});
- $("prevBtn").disabled=current===0;$("nextBtn").disabled=current===29;renderNav();
+ const item = window.TRYOUT_QUESTIONS[current]; 
+ $("questionCount").textContent = `Soal ${current + 1} dari 30`; 
+ $("questionText").style.whiteSpace = "pre-line"; // Menjaga format baris paragraf/teks
+ $("questionText").textContent = item.text || item.q; // Kompatibilitas teks
+ 
+ const box = $("choices");
+ box.replaceChildren();
+
+ // 1. Pilihan Ganda Biasa (Single Choice)
+ if (item.type === "single" || !item.type) {
+   const options = item.options || item.a;
+   const labels = ["A", "B", "C", "D"];
+   options.forEach((choice, i) => {
+     const label = document.createElement("label");
+     label.className = "choice" + (answers[current] === i ? " selected" : "");
+     
+     const input = document.createElement("input");
+     input.type = "radio";
+     input.name = "answer";
+     input.value = i;
+     input.checked = answers[current] === i;
+     
+     input.addEventListener("change", () => {
+       answers[current] = i;
+       renderQuestion();
+       renderNav();
+       updateProgress();
+     });
+     
+     const span = document.createElement("span");
+     span.textContent = `${labels[i]}. ${choice}`;
+     label.append(input, span);
+     box.append(label);
+   });
+ } 
+ // 2. Pilihan Ganda Kompleks (Multiple Choice / Checklist Multiple)
+ else if (item.type === "multiple") {
+   if (!Array.isArray(answers[current])) answers[current] = [];
+   const labels = ["A", "B", "C", "D"];
+   
+   item.options.forEach((choice, i) => {
+     const label = document.createElement("label");
+     const isChecked = answers[current].includes(i);
+     label.className = "choice" + (isChecked ? " selected" : "");
+     
+     const input = document.createElement("input");
+     input.type = "checkbox";
+     input.value = i;
+     input.checked = isChecked;
+     
+     input.addEventListener("change", () => {
+       if (input.checked) {
+         if (!answers[current].includes(i)) answers[current].push(i);
+       } else {
+         answers[current] = answers[current].filter(idx => idx !== i);
+       }
+       renderQuestion();
+       renderNav();
+       updateProgress();
+     });
+     
+     const span = document.createElement("span");
+     span.textContent = `${labels[i]}. ${choice}`;
+     label.append(input, span);
+     box.append(label);
+   });
+ } 
+ // 3. Tabel Benar-Salah ATAU Fakta-Opini
+ else if (item.type === "true_false" || item.type === "fact_opinion") {
+   if (typeof answers[current] !== "object" || answers[current] === null || Array.isArray(answers[current])) {
+     answers[current] = {};
+   }
+
+   const isTrueFalse = item.type === "true_false";
+   const col1Header = "Pernyataan";
+   const col2Header = isTrueFalse ? "Benar" : "Fakta";
+   const col3Header = isTrueFalse ? "Salah" : "Opini";
+
+   const table = document.createElement("table");
+   table.style.width = "100%";
+   table.style.borderCollapse = "collapse";
+   table.style.marginTop = "10px";
+
+   // Buat Header Tabel
+   table.innerHTML = `
+     <thead>
+       <tr style="background:#f1f5f9; text-align:left;">
+         <th style="padding:8px; border:1px solid #cbd5e1;">${col1Header}</th>
+         <th style="padding:8px; border:1px solid #cbd5e1; text-align:center; width:80px;">${col2Header}</th>
+         <th style="padding:8px; border:1px solid #cbd5e1; text-align:center; width:80px;">${col3Header}</th>
+       </tr>
+     </thead>
+   `;
+
+   const tbody = document.createElement("tbody");
+   item.statements.forEach((st, i) => {
+     const tr = document.createElement("tr");
+     
+     const tdStatement = document.createElement("td");
+     tdStatement.style.padding = "8px";
+     tdStatement.style.border = "1px solid #cbd5e1";
+     tdStatement.textContent = st.statement;
+
+     // Opsi 1 (Benar / Fakta)
+     const tdOpt1 = document.createElement("td");
+     tdOpt1.style.padding = "8px";
+     tdOpt1.style.border = "1px solid #cbd5e1";
+     tdOpt1.style.textAlign = "center";
+     const radio1 = document.createElement("input");
+     radio1.type = "radio";
+     radio1.name = `statement_${current}_${i}`;
+     radio1.value = col2Header;
+     radio1.checked = answers[current][i] === col2Header;
+
+     radio1.addEventListener("change", () => {
+       answers[current][i] = col2Header;
+       renderNav();
+       updateProgress();
+     });
+     tdOpt1.append(radio1);
+
+     // Opsi 2 (Salah / Opini)
+     const tdOpt2 = document.createElement("td");
+     tdOpt2.style.padding = "8px";
+     tdOpt2.style.border = "1px solid #cbd5e1";
+     tdOpt2.style.textAlign = "center";
+     const radio2 = document.createElement("input");
+     radio2.type = "radio";
+     radio2.name = `statement_${current}_${i}`;
+     radio2.value = col3Header;
+     radio2.checked = answers[current][i] === col3Header;
+
+     radio2.addEventListener("change", () => {
+       answers[current][i] = col3Header;
+       renderNav();
+       updateProgress();
+     });
+     tdOpt2.append(radio2);
+
+     tr.append(tdStatement, tdOpt1, tdOpt2);
+     tbody.append(tr);
+   });
+
+   table.append(tbody);
+   box.append(table);
+ }
+
+ $("prevBtn").disabled = current === 0;
+ $("nextBtn").disabled = current === 29;
+ renderNav();
 }
-function renderNav(){const box=$("questionNav");box.replaceChildren();answers.forEach((a,i)=>{const b=document.createElement("button");b.type="button";b.className="navBtn"+(a!==null?" answered":"")+(i===current?" current":"");b.textContent=i+1;b.setAttribute("aria-label",`Buka soal ${i+1}`);b.addEventListener("click",()=>{current=i;renderQuestion();});box.append(b);});}
-function updateProgress(){const count=answers.filter(a=>a!==null).length;$("progressBar").style.width=(count/30*100)+"%";$("quizMessage").textContent=`${count} dari 30 soal telah dijawab.`;$("quizMessage").style.color="#64748b";}
+
+// ==========================================
+// PENGECEKAN STATUS SOAL TERJAWAB (DIRUBAH)
+// ==========================================
+function isAnswered(a, item) {
+  if (a === null || a === undefined) return false;
+  if (typeof a === "number") return true;
+  if (Array.isArray(a)) return a.length > 0;
+  if (typeof a === "object") {
+    const totalStatements = item && item.statements ? item.statements.length : 0;
+    return Object.keys(a).length === totalStatements;
+  }
+  return false;
+}
+
+function renderNav(){
+  const box=$("questionNav");
+  box.replaceChildren();
+  answers.forEach((a,i)=>{
+    const item = window.TRYOUT_QUESTIONS[i];
+    const answered = isAnswered(a, item);
+    const b=document.createElement("button");
+    b.type="button";
+    b.className="navBtn"+(answered?" answered":"")+(i===current?" current":"");
+    b.textContent=i+1;
+    b.setAttribute("aria-label",`Buka soal ${i+1}`);
+    b.addEventListener("click",()=>{current=i;renderQuestion();});
+    box.append(b);
+  });
+}
+
+function updateProgress(){
+  const count = answers.filter((a, i) => isAnswered(a, window.TRYOUT_QUESTIONS[i])).length;
+  $("progressBar").style.width=(count/30*100)+"%";
+  $("quizMessage").textContent=`${count} dari 30 soal telah dijawab.`;
+  $("quizMessage").style.color="#64748b";
+}
+
 $("prevBtn").addEventListener("click",()=>{if(current>0){current--;renderQuestion();}});
 $("nextBtn").addEventListener("click",()=>{if(current<29){current++;renderQuestion();}});
 $("submitBtn").addEventListener("click",()=>submitQuiz(false));
+
 async function submitQuiz(auto=false){
  if(submitting||!attemptId)return;
- if(!auto){const blank=answers.filter(a=>a===null).length;if(!confirm(blank?`Masih ada ${blank} soal kosong. Kumpulkan sekarang?`:"Yakin ingin mengumpulkan jawaban?"))return;}
+ if(!auto){
+   const blank = answers.filter((a, i) => !isAnswered(a, window.TRYOUT_QUESTIONS[i])).length;
+   if(!confirm(blank?`Masih ada ${blank} soal belum lengkap/kosong. Kumpulkan sekarang?`:"Yakin ingin mengumpulkan jawaban?"))return;
+ }
  submitting=true;clearInterval(timerId);$("submitBtn").disabled=true;showMessage("quizMessage","Mengirim jawaban...",false);
  try{
    const elapsed=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
    const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed});
    $("quizCard").classList.add("hidden");$("resultCard").classList.remove("hidden");
    $("resultText").textContent=`Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
+   
    const review=$("reviewList");review.replaceChildren();
-   (result.review||[]).forEach((r,i)=>{const card=document.createElement("article");card.className="card";
+   (result.review||[]).forEach((r,i)=>{
+     const qItem = window.TRYOUT_QUESTIONS[i];
+     const card=document.createElement("article");card.className="card";
      const h=document.createElement("h3");h.textContent=`Soal ${i+1} — ${r.correct?"Benar":"Belum tepat"}`;
-     const p=document.createElement("p");p.textContent=window.TRYOUT_QUESTIONS[i].q;
-     const a=document.createElement("p");a.textContent=`Jawaban benar: ${["A","B","C","D"][r.answer]}. ${window.TRYOUT_QUESTIONS[i].a[r.answer]}`;
+     const p=document.createElement("p");p.textContent=qItem.text || qItem.q;
      const ex=document.createElement("p");ex.textContent=`Pembahasan: ${r.explanation}`;
-     card.append(h,p,a,ex);review.append(card);
+     card.append(h,p,ex);review.append(card);
    });
- }catch(err){submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);if(seconds>0)timerId=setInterval(tick,1000);}
+ }catch(err){
+   submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);
+   if(seconds>0)timerId=setInterval(tick,1000);
+ }
 }
+
 updateTimer();
