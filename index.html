@@ -9,7 +9,47 @@
 <main class="wrap">
 <section id="loginCard" class="card">
 <h2>Masuk Tryout</h2><p>Isi identitas dengan benar dan masukkan password bersama yang diberikan guru.</p>
-<form id="startForm"><label>Asal sekolah<input id="school" maxlength="150" required placeholder="Contoh: SD Negeri 1 Ungaran"></label>
+<form id="startForm">
+  <label>Asal sekolah
+    <select id="school" required>
+      <option value="">-- Pilih asal sekolah --</option>
+      <option value="SDN BANJARSARI 1">SDN BANJARSARI 1</option>
+      <option value="SDN BANJARSARI 2">SDN BANJARSARI 2</option>
+      <option value="SDN BEDONO 1">SDN BEDONO 1</option>
+      <option value="SDN BULUSARI">SDN BULUSARI</option>
+      <option value="SDN JETAKSARI 1">SDN JETAKSARI 1</option>
+      <option value="SDN DALEMAN">SDN DALEMAN</option>
+      <option value="SDN DOMBO 1">SDN DOMBO 1</option>
+      <option value="SDN KALISARI 1">SDN KALISARI 1</option>
+      <option value="SDN KALISARI 3">SDN KALISARI 3</option>
+      <option value="SDN KARANGASEM 1">SDN KARANGASEM 1</option>
+      <option value="SDN KARANGASEM 2">SDN KARANGASEM 2</option>
+      <option value="SDN LOIRENG">SDN LOIRENG</option>
+      <option value="SDN PILANGSARI">SDN PILANGSARI</option>
+      <option value="SDN PURWOSARI 1">SDN PURWOSARI 1</option>
+      <option value="SDN PURWOSARI 2">SDN PURWOSARI 2</option>
+      <option value="SDN SAYUNG 1">SDN SAYUNG 1</option>
+      <option value="SDN SAYUNG 2">SDN SAYUNG 2</option>
+      <option value="SDN SAYUNG 3">SDN SAYUNG 3</option>
+      <option value="SDN SAYUNG 4">SDN SAYUNG 4</option>
+      <option value="SDN SIDOGEMAH 1">SDN SIDOGEMAH 1</option>
+      <option value="SDN SIDOGEMAH 2">SDN SIDOGEMAH 2</option>
+      <option value="SDN SIDOREJO 1">SDN SIDOREJO 1</option>
+      <option value="SDN SRIWULAN 1">SDN SRIWULAN 1</option>
+      <option value="SDN SRIWULAN 3">SDN SRIWULAN 3</option>
+      <option value="SDN SRIWULAN 4">SDN SRIWULAN 4</option>
+      <option value="SDN SURODADI 1">SDN SURODADI 1</option>
+      <option value="SDN SURODADI 2">SDN SURODADI 2</option>
+      <option value="SDN TAMBAKROTO">SDN TAMBAKROTO</option>
+      <option value="SDN TIMBULSLOKO 1">SDN TIMBULSLOKO 1</option>
+      <option value="SDN TIMBULSLOKO 2">SDN TIMBULSLOKO 2</option>
+      <option value="SDN TUGU 1">SDN TUGU 1</option>
+      <option value="SDN PRAMPELAN 1">SDN PRAMPELAN 1</option>
+      <option value="SD IT SITI SULAECHAH 2">SD IT SITI SULAECHAH 2</option>
+      <option value="SDN BEDONO 3">SDN BEDONO 3</option>
+      <option value="SDN TUGU 2">SDN TUGU 2</option>
+    </select>
+  </label>
 <label>Nama lengkap<input id="studentName" maxlength="100" required autocomplete="name" placeholder="Nama siswa"></label>
 <label>Nomor absen<input id="attendance" type="number" min="1" max="99" required placeholder="Nomor absen"></label>
 <label>Password tryout<input id="studentPassword" type="password" required autocomplete="current-password" placeholder="Password dari guru"></label>
