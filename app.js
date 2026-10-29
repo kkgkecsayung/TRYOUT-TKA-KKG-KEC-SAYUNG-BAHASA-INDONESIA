@@ -42,19 +42,15 @@ $("startForm").addEventListener("submit",async(e)=>{
 function tick(){seconds--; if(seconds<=0){seconds=0;updateTimer();clearInterval(timerId);submitQuiz(true);return;}updateTimer();}
 function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");$("timer").textContent=`${m}:${s}`;if(seconds<=300)$("timer").style.background="#fee2e2";}
 
-// ==========================================
-// RENDER SOAL SESUAI TIPE (DIRUBAH)
-// ==========================================
 function renderQuestion(){
  const item = window.TRYOUT_QUESTIONS[current]; 
  $("questionCount").textContent = `Soal ${current + 1} dari 30`; 
- $("questionText").style.whiteSpace = "pre-line"; // Menjaga format baris paragraf/teks
- $("questionText").textContent = item.text || item.q; // Kompatibilitas teks
+ $("questionText").style.whiteSpace = "pre-line";
+ $("questionText").textContent = item.text || item.q;
  
  const box = $("choices");
  box.replaceChildren();
 
- // 1. Pilihan Ganda Biasa (Single Choice)
  if (item.type === "single" || !item.type) {
    const options = item.options || item.a;
    const labels = ["A", "B", "C", "D"];
@@ -81,7 +77,6 @@ function renderQuestion(){
      box.append(label);
    });
  } 
- // 2. Pilihan Ganda Kompleks (Multiple Choice / Checklist Multiple)
  else if (item.type === "multiple") {
    if (!Array.isArray(answers[current])) answers[current] = [];
    const labels = ["A", "B", "C", "D"];
@@ -113,7 +108,6 @@ function renderQuestion(){
      box.append(label);
    });
  } 
- // 3. Tabel Benar-Salah ATAU Fakta-Opini
  else if (item.type === "true_false" || item.type === "fact_opinion") {
    if (typeof answers[current] !== "object" || answers[current] === null || Array.isArray(answers[current])) {
      answers[current] = {};
@@ -129,7 +123,6 @@ function renderQuestion(){
    table.style.borderCollapse = "collapse";
    table.style.marginTop = "10px";
 
-   // Buat Header Tabel
    table.innerHTML = `
      <thead>
        <tr style="background:#f1f5f9; text-align:left;">
@@ -149,7 +142,6 @@ function renderQuestion(){
      tdStatement.style.border = "1px solid #cbd5e1";
      tdStatement.textContent = st.statement;
 
-     // Opsi 1 (Benar / Fakta)
      const tdOpt1 = document.createElement("td");
      tdOpt1.style.padding = "8px";
      tdOpt1.style.border = "1px solid #cbd5e1";
@@ -167,7 +159,6 @@ function renderQuestion(){
      });
      tdOpt1.append(radio1);
 
-     // Opsi 2 (Salah / Opini)
      const tdOpt2 = document.createElement("td");
      tdOpt2.style.padding = "8px";
      tdOpt2.style.border = "1px solid #cbd5e1";
@@ -198,9 +189,6 @@ function renderQuestion(){
  renderNav();
 }
 
-// ==========================================
-// PENGECEKAN STATUS SOAL TERJAWAB (DIRUBAH)
-// ==========================================
 function isAnswered(a, item) {
   if (a === null || a === undefined) return false;
   if (typeof a === "number") return true;
@@ -251,16 +239,6 @@ async function submitQuiz(auto=false){
    const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed});
    $("quizCard").classList.add("hidden");$("resultCard").classList.remove("hidden");
    $("resultText").textContent=`Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
-   
-   const review=$("reviewList");review.replaceChildren();
-   (result.review||[]).forEach((r,i)=>{
-     const qItem = window.TRYOUT_QUESTIONS[i];
-     const card=document.createElement("article");card.className="card";
-     const h=document.createElement("h3");h.textContent=`Soal ${i+1} — ${r.correct?"Benar":"Belum tepat"}`;
-     const p=document.createElement("p");p.textContent=qItem.text || qItem.q;
-     const ex=document.createElement("p");ex.textContent=`Pembahasan: ${r.explanation}`;
-     card.append(h,p,ex);review.append(card);
-   });
  }catch(err){
    submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);
    if(seconds>0)timerId=setInterval(tick,1000);
