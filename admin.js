@@ -1,7 +1,7 @@
 // Isi URL dan anon key Supabase, serta URL Edge Function.
-const SUPABASE_URL = "GANTI_DENGAN_SUPABASE_PROJECT_URL";
-const SUPABASE_ANON_KEY = "GANTI_DENGAN_SUPABASE_ANON_KEY";
-const API_URL = "GANTI_DENGAN_URL_SUPABASE_FUNCTION";
+const SUPABASE_URL = "https://nwtpsdwpvrowweuxlkse.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_jWbnBJFOZyPwmlGh2b4Fxw_1IsUfLLo";
+const API_URL = "https://nwtpsdwpvrowweuxlkse.supabase.co/functions/v1/tryout-api";
 const $ = (id) => document.getElementById(id);
 let supabaseClient = null, lastResults = [];
 function msg(id,text,error=true){$(id).textContent=text;$(id).style.color=error?"#b91c1c":"#166534";}
