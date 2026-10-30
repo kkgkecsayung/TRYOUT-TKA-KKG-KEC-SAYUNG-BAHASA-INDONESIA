@@ -318,8 +318,13 @@ async function submitQuiz(auto=false){
  try{
    const elapsed=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
    const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed});
-   $("quizCard").classList.add("hidden");$("resultCard").classList.remove("hidden");
-   $("resultText").textContent=`Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
+  $("quizCard").classList.add("hidden");
+$("resultCard").classList.remove("hidden");
+
+$("resultText").textContent =
+  `Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
+
+// Tampilkan pembahasan seluruh soal
  }catch(err){
    submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);
    if(seconds>0)timerId=setInterval(tick,1000);
