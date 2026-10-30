@@ -292,7 +292,7 @@ function renderReview() {
 
     const question = document.createElement("p");
     question.className = "review-question";
-    question.textContent = item.text || item.q || "";
+    question.textContent = item.text;
 
     const userAnswer = document.createElement("p");
     userAnswer.textContent = `Jawaban Anda: ${getUserAnswerLabel(item, answers[index])}`;
@@ -318,14 +318,8 @@ async function submitQuiz(auto=false){
  try{
    const elapsed=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
    const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed});
-  $("quizCard").classList.add("hidden");
-$("resultCard").classList.remove("hidden");
-
-$("resultText").textContent =
-  `Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
-  renderReview();
-// Tampilkan pembahasan seluruh soal
-     renderReview();
+   $("quizCard").classList.add("hidden");$("resultCard").classList.remove("hidden");
+   $("resultText").textContent=`Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
  }catch(err){
    submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);
    if(seconds>0)timerId=setInterval(tick,1000);
