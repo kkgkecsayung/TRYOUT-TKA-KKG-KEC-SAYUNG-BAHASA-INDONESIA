@@ -323,7 +323,7 @@ $("resultCard").classList.remove("hidden");
 
 $("resultText").textContent =
   `Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
-
+  renderReview();
 // Tampilkan pembahasan seluruh soal
      renderReview();
  }catch(err){
