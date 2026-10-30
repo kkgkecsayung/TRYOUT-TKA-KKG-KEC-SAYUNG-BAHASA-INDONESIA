@@ -43,7 +43,13 @@ function tick(){seconds--; if(seconds<=0){seconds=0;updateTimer();clearInterval(
 function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");$("timer").textContent=`${m}:${s}`;if(seconds<=300)$("timer").style.background="#fee2e2";}
 
 function renderQuestion(){
- const item = window.TRYOUT_QUESTIONS[current]; 
+ const item = window.TRYOUT_QUESTIONS[current];
+const passageBox = $("passageBox");
+
+ if (passageBox) {
+   passageBox.textContent = item.passage || "";
+   passageBox.classList.toggle("hidden", !item.passage);
+ }
  $("questionCount").textContent = `Soal ${current + 1} dari 30`; 
  $("questionText").style.whiteSpace = "pre-line";
  $("questionText").textContent = item.text || item.q;
@@ -320,6 +326,7 @@ async function submitQuiz(auto=false){
    const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed});
    $("quizCard").classList.add("hidden");$("resultCard").classList.remove("hidden");
    $("resultText").textContent=`Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
+     renderReview();
  }catch(err){
    submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);
    if(seconds>0)timerId=setInterval(tick,1000);
