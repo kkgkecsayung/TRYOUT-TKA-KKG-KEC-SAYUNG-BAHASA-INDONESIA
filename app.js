@@ -1,485 +1,329 @@
-/*
- * Bank soal Tryout TKA SD - Bahasa Indonesia
- * 30 soal berdasarkan dokumen TRYOUT TKA SD.
- *
- * Struktur:
- * - single: jawaban tunggal; answer adalah indeks opsi (mulai dari 0)
- * - multiple: pilihan ganda kompleks; answer adalah array indeks opsi
- * - true_false: answer berisi "Benar"/"Salah" untuk tiap pernyataan
- * - fact_opinion: answer berisi "Fakta"/"Opini" untuk tiap pernyataan
- *
- * Catatan: karena kunci jawaban disertakan di sisi klien untuk pembahasan,
- * jangan menganggap file ini sebagai sumber penilaian yang aman untuk ujian berisiko tinggi.
- */
-window.TRYOUT_QUESTIONS = [
-  {
-    "id": 1,
-    "type": "single",
-    "text": "Bacalah teks “Hutan Mangrove dan Manfaatnya”. Apa fungsi akar mangrove berdasarkan teks?",
-    "options": [
-      "Menghasilkan air tawar bagi warga.",
-      "Menahan lumpur dan mengurangi pengikisan pantai.",
-      "Menghalangi semua hewan masuk ke pantai.",
-      "Mengubah air laut menjadi air tawar."
-    ],
-    "answer": 1,
-    "explanation": "Teks menyebutkan bahwa akar mangrove membantu menahan lumpur dan mengurangi pengikisan pantai."
-  },
-  {
-    "id": 2,
-    "type": "single",
-    "text": "Hewan yang disebutkan hidup di kawasan mangrove adalah ....",
-    "options": [
-      "Harimau, rusa, dan gajah.",
-      "Ayam, bebek, dan angsa.",
-      "Kepiting, ikan kecil, dan burung.",
-      "Kambing, sapi, dan kerbau."
-    ],
-    "answer": 2,
-    "explanation": "Pada teks disebutkan kepiting, ikan kecil, dan burung sebagai hewan yang hidup di kawasan mangrove."
-  },
-  {
-    "id": 3,
-    "type": "single",
-    "text": "Apa ide pokok paragraf ketiga pada teks “Hutan Mangrove dan Manfaatnya”?",
-    "options": [
-      "Mangrove hanya tumbuh di pantai berlumpur.",
-      "Kerusakan mangrove dapat menimbulkan berbagai dampak buruk.",
-      "Semua hewan laut hidup di hutan mangrove.",
-      "Masyarakat tidak membutuhkan hutan mangrove."
-    ],
-    "answer": 1,
-    "explanation": "Paragraf ketiga menjelaskan kerusakan mangrove akibat penebangan dan pembangunan serta dampaknya bagi habitat hewan dan pantai."
-  },
-  {
-    "id": 4,
-    "type": "single",
-    "text": "Mengapa kerusakan hutan mangrove dapat membahayakan wilayah pantai?",
-    "options": [
-      "Karena air laut akan langsung menghilang.",
-      "Karena semua tumbuhan pantai akan berubah menjadi mangrove.",
-      "Karena habitat hewan berkurang dan pantai lebih rentan terkikis.",
-      "Karena jumlah penduduk pesisir akan berkurang."
-    ],
-    "answer": 2,
-    "explanation": "Menurut teks, kerusakan mangrove mengurangi habitat hewan dan membuat pantai lebih rentan mengalami pengikisan."
-  },
-  {
-    "id": 5,
-    "type": "multiple",
-    "text": "Pilihan Ganda Kompleks — pilih semua pernyataan yang benar. Berdasarkan teks, manfaat hutan mangrove adalah ....",
-    "options": [
-      "Membantu mengurangi pengikisan pantai.",
-      "Menjadi habitat bagi berbagai hewan.",
-      "Menyebabkan semua ikan berpindah ke laut lepas.",
-      "Menjadi tempat berkembang biak bagi beberapa jenis ikan."
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "Mangrove membantu mengurangi pengikisan pantai, menjadi habitat berbagai hewan, dan tempat berkembang biak beberapa jenis ikan. Pernyataan C tidak sesuai dengan teks."
-  },
-  {
-    "id": 6,
-    "type": "true_false",
-    "text": "Kategori Benar-Salah — tentukan apakah pernyataan berikut sesuai dengan isi teks “Hutan Mangrove dan Manfaatnya”.",
-    "statements": [
-      {
-        "statement": "Mangrove dapat tumbuh di wilayah berlumpur.",
-        "answer": "Benar"
-      },
-      {
-        "statement": "Penebangan yang tidak terkendali dapat merusak hutan mangrove.",
-        "answer": "Benar"
-      },
-      {
-        "statement": "Menjaga mangrove hanya merupakan tanggung jawab pemerintah.",
-        "answer": "Salah"
-      }
-    ],
-    "answer": [
-      "Benar",
-      "Benar",
-      "Salah"
-    ],
-    "explanation": "A dan B sesuai dengan teks. C salah karena teks menyatakan pemerintah dan warga perlu bekerja sama melindungi kawasan pesisir."
-  },
-  {
-    "id": 7,
-    "type": "single",
-    "text": "Dalam cerita “Sepeda untuk Rani”, di manakah Rani berteduh ketika hujan turun?",
-    "options": [
-      "Di perpustakaan sekolah.",
-      "Di depan warung.",
-      "Di halaman rumahnya.",
-      "Di ruang kelas."
-    ],
-    "answer": 1,
-    "explanation": "Rani berteduh di depan warung sambil menunggu hujan reda."
-  },
-  {
-    "id": 8,
-    "type": "single",
-    "text": "Mengapa Pak Damar meminjamkan sepeda kepada Rani?",
-    "options": [
-      "Agar Rani dapat menjual sepeda itu.",
-      "Agar Rani tidak perlu mengikuti lomba.",
-      "Agar perjalanan Rani lebih singkat dan ia mempunyai lebih banyak waktu berlatih.",
-      "Agar Rani bekerja di warung setiap pagi."
-    ],
-    "answer": 2,
-    "explanation": "Dengan sepeda, perjalanan Rani ke sekolah menjadi lebih singkat sehingga ia memiliki lebih banyak waktu untuk berlatih membaca puisi."
-  },
-  {
-    "id": 9,
-    "type": "single",
-    "text": "Watak Rani yang tampak dalam cerita “Sepeda untuk Rani” adalah ....",
-    "options": [
-      "Mudah menyerah dan ceroboh.",
-      "Rajin dan bertanggung jawab.",
-      "Sombong dan suka memerintah.",
-      "Pemarah dan tidak peduli."
-    ],
-    "answer": 1,
-    "explanation": "Rani tetap berusaha pergi ke sekolah dan berlatih puisi. Ia juga khawatir apakah mampu menjaga sepeda pinjaman, yang menunjukkan kepedulian terhadap tanggung jawab."
-  },
-  {
-    "id": 10,
-    "type": "single",
-    "text": "Makna ungkapan “bantuan kecil dapat memberikan kesempatan besar” adalah ....",
-    "options": [
-      "Bantuan hanya berguna jika berupa uang banyak.",
-      "Pertolongan sederhana dapat memberikan dampak berarti bagi orang lain.",
-      "Setiap orang harus memberikan sepeda kepada temannya.",
-      "Kesempatan hanya datang kepada orang yang menang lomba."
-    ],
-    "answer": 1,
-    "explanation": "Sepeda yang dipinjamkan Pak Damar merupakan bantuan sederhana yang memberi Rani lebih banyak waktu untuk berlatih."
-  },
-  {
-    "id": 11,
-    "type": "multiple",
-    "text": "Pilihan Ganda Kompleks — pilih semua jawaban yang benar. Pelajaran yang dapat diambil dari cerita “Sepeda untuk Rani” adalah ....",
-    "options": [
-      "Kita sebaiknya membantu orang lain sesuai kemampuan.",
-      "Keberhasilan hanya ditentukan oleh hadiah yang diterima.",
-      "Kita perlu bertanggung jawab terhadap barang yang dipinjam.",
-      "Berusaha dengan sungguh-sungguh tetap penting meskipun belum menjadi juara."
-    ],
-    "answer": [
-      0,
-      2,
-      3
-    ],
-    "explanation": "Cerita mengajarkan kepedulian, tanggung jawab atas barang pinjaman, serta pentingnya usaha meskipun Rani tidak menjadi juara pertama."
-  },
-  {
-    "id": 12,
-    "type": "true_false",
-    "text": "Kategori Benar-Salah — tentukan apakah pernyataan berikut sesuai dengan cerita “Sepeda untuk Rani”.",
-    "statements": [
-      {
-        "statement": "Rani selalu mengeluh ketika berjalan ke sekolah.",
-        "answer": "Salah"
-      },
-      {
-        "statement": "Pak Damar membantu Rani dengan meminjamkan sepeda.",
-        "answer": "Benar"
-      },
-      {
-        "statement": "Rani memenangkan juara pertama dalam lomba puisi.",
-        "answer": "Salah"
-      }
-    ],
-    "answer": [
-      "Salah",
-      "Benar",
-      "Salah"
-    ],
-    "explanation": "Rani tidak pernah mengeluh, Pak Damar meminjamkan sepeda, dan Rani tidak memenangkan juara pertama."
-  },
-  {
-    "id": 13,
-    "type": "single",
-    "text": "Menurut teks “Mengurangi Sampah Plastik di Sekolah”, sampah plastik di sekolah dapat berasal dari ....",
-    "options": [
-      "Daun kering dan ranting pohon saja.",
-      "Bungkus makanan, sedotan, dan botol minuman sekali pakai.",
-      "Air hujan dan udara.",
-      "Batu dan pasir di halaman."
-    ],
-    "answer": 1,
-    "explanation": "Teks menyebut bungkus makanan, sedotan, dan botol minuman sekali pakai sebagai contoh sumber sampah plastik."
-  },
-  {
-    "id": 14,
-    "type": "single",
-    "text": "Apa tujuan memilah sampah plastik berdasarkan jenisnya?",
-    "options": [
-      "Agar sampah terlihat lebih berwarna.",
-      "Agar sampah semakin banyak.",
-      "Agar sampah lebih mudah dikelola.",
-      "Agar semua sampah dapat dibakar."
-    ],
-    "answer": 2,
-    "explanation": "Pemilahan berdasarkan jenis membantu sampah lebih mudah dikelola."
-  },
-  {
-    "id": 15,
-    "type": "single",
-    "text": "Makna kata “konsisten” dalam paragraf terakhir teks “Mengurangi Sampah Plastik di Sekolah” adalah ....",
-    "options": [
-      "Dilakukan secara teratur dan berkelanjutan.",
-      "Dilakukan hanya ketika ada perlombaan.",
-      "Dilakukan secara terburu-buru.",
-      "Dilakukan jika mendapat hadiah."
-    ],
-    "answer": 0,
-    "explanation": "Konsisten berarti dilakukan secara tetap, teratur, dan berkelanjutan."
-  },
-  {
-    "id": 16,
-    "type": "single",
-    "text": "Apa simpulan yang tepat berdasarkan teks “Mengurangi Sampah Plastik di Sekolah”?",
-    "options": [
-      "Sampah plastik hanya dapat dikurangi oleh petugas kebersihan.",
-      "Penyediaan tempat sampah sudah cukup tanpa perubahan perilaku.",
-      "Pengurangan sampah plastik membutuhkan fasilitas dan keterlibatan warga sekolah.",
-      "Semua sampah plastik tidak dapat dimanfaatkan kembali."
-    ],
-    "answer": 2,
-    "explanation": "Teks menjelaskan perlunya fasilitas seperti tempat sampah terpilah sekaligus keterlibatan seluruh warga sekolah."
-  },
-  {
-    "id": 17,
-    "type": "multiple",
-    "text": "Pilihan Ganda Kompleks — pilih semua jawaban yang benar. Tindakan yang sesuai dengan isi teks “Mengurangi Sampah Plastik di Sekolah” adalah ....",
-    "options": [
-      "Membawa botol minum sendiri.",
-      "Membuang seluruh sampah ke satu tempat.",
-      "Menggunakan kembali barang yang masih layak.",
-      "Mengikuti edukasi tentang lingkungan."
-    ],
-    "answer": [
-      0,
-      2,
-      3
-    ],
-    "explanation": "Membawa botol sendiri, menggunakan kembali barang yang layak, dan mengikuti edukasi lingkungan sesuai dengan anjuran dalam teks."
-  },
-  {
-    "id": 18,
-    "type": "fact_opinion",
-    "text": "Kategori Fakta-Opini — tentukan apakah setiap pernyataan termasuk fakta atau opini berdasarkan isi dan bentuk pernyataannya.",
-    "statements": [
-      {
-        "statement": "Sampah plastik dapat berasal dari bungkus makanan.",
-        "answer": "Fakta"
-      },
-      {
-        "statement": "Menurut saya, membawa kotak makan sendiri merupakan cara paling menyenangkan.",
-        "answer": "Opini"
-      },
-      {
-        "statement": "Sekolah dapat menyediakan tempat sampah terpilah.",
-        "answer": "Fakta"
-      }
-    ],
-    "answer": [
-      "Fakta",
-      "Opini",
-      "Fakta"
-    ],
-    "explanation": "A didukung informasi dalam teks. B merupakan pendapat pribadi yang ditandai “Menurut saya”. C menyatakan tindakan yang dapat dilakukan sekolah dan disebutkan dalam teks sebagai informasi."
-  },
-  {
-    "id": 19,
-    "type": "single",
-    "text": "Kapan mobil perpustakaan keliling mengunjungi Desa Sukamaju?",
-    "options": [
-      "Setiap hari Senin.",
-      "Setiap hari Rabu.",
-      "Setiap hari Jumat.",
-      "Setiap akhir bulan."
-    ],
-    "answer": 1,
-    "explanation": "Pada paragraf pertama disebutkan bahwa mobil perpustakaan keliling mengunjungi Desa Sukamaju setiap hari Rabu."
-  },
-  {
-    "id": 20,
-    "type": "single",
-    "text": "Mengapa jumlah pengunjung perpustakaan keliling bertambah?",
-    "options": [
-      "Semua anak diwajibkan membeli buku.",
-      "Mobil perpustakaan memberikan uang kepada setiap anak.",
-      "Petugas membuat kegiatan membaca lebih menarik.",
-      "Anak-anak tidak boleh bermain di rumah."
-    ],
-    "answer": 2,
-    "explanation": "Petugas mengadakan membaca cerita bersama dan kuis sederhana sehingga kegiatan membaca menjadi lebih menarik."
-  },
-  {
-    "id": 21,
-    "type": "single",
-    "text": "Apa ide pokok paragraf ketiga pada teks “Perpustakaan Keliling di Desa Sukamaju”?",
-    "options": [
-      "Anak-anak tidak suka membaca buku.",
-      "Kegiatan yang menarik meningkatkan minat anak untuk membaca.",
-      "Mira ingin pergi ke kota.",
-      "Kepala desa ingin membeli mobil baru."
-    ],
-    "answer": 1,
-    "explanation": "Paragraf ketiga menjelaskan bahwa kegiatan yang menarik membuat membaca lebih menyenangkan, jumlah pengunjung bertambah, dan anak mulai meminjam buku."
-  },
-  {
-    "id": 22,
-    "type": "single",
-    "text": "Makna ungkapan “minat baca” adalah ....",
-    "options": [
-      "Keinginan atau ketertarikan untuk membaca.",
-      "Kemampuan untuk membeli banyak buku.",
-      "Kewajiban untuk menulis cerita.",
-      "Kebiasaan mengumpulkan kendaraan."
-    ],
-    "answer": 0,
-    "explanation": "Minat baca berarti keinginan atau ketertarikan seseorang terhadap kegiatan membaca."
-  },
-  {
-    "id": 23,
-    "type": "multiple",
-    "text": "Pilihan Ganda Kompleks — pilih semua jawaban yang benar. Berdasarkan teks “Perpustakaan Keliling di Desa Sukamaju”, manfaat perpustakaan keliling adalah ....",
-    "options": [
-      "Memudahkan anak mendapatkan bahan bacaan.",
-      "Membantu meningkatkan minat baca.",
-      "Mengharuskan semua anak tinggal di balai desa.",
-      "Memberikan kesempatan meminjam buku untuk dibaca di rumah."
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "Perpustakaan keliling mendekatkan buku kepada anak, membantu meningkatkan minat baca, dan memungkinkan anak meminjam buku untuk dibaca di rumah."
-  },
-  {
-    "id": 24,
-    "type": "true_false",
-    "text": "Kategori Benar-Salah — tentukan apakah pernyataan berikut sesuai dengan teks “Perpustakaan Keliling di Desa Sukamaju”.",
-    "statements": [
-      {
-        "statement": "Pada awalnya, hanya sedikit anak yang datang ke perpustakaan keliling.",
-        "answer": "Benar"
-      },
-      {
-        "statement": "Mira merasa senang karena dapat membaca buku tanpa pergi jauh ke kota.",
-        "answer": "Benar"
-      },
-      {
-        "statement": "Kepala desa menilai dukungan warga tidak diperlukan.",
-        "answer": "Salah"
-      }
-    ],
-    "answer": [
-      "Benar",
-      "Benar",
-      "Salah"
-    ],
-    "explanation": "A dan B sesuai dengan teks. C salah karena kepala desa menyatakan dukungan warga sangat diperlukan."
-  },
-  {
-    "id": 25,
-    "type": "single",
-    "text": "Apa yang dapat menyebabkan air terbuang percuma berdasarkan teks “Hemat Air, Selamatkan Masa Depan”?",
-    "options": [
-      "Mematikan keran setelah digunakan.",
-      "Membiarkan keran terbuka dan membiarkan pipa bocor.",
-      "Menyiram tanaman sesuai kebutuhan.",
-      "Melaporkan keran yang rusak."
-    ],
-    "answer": 1,
-    "explanation": "Keran yang dibiarkan terbuka saat tidak digunakan dan pipa yang bocor dapat menyebabkan air terbuang percuma."
-  },
-  {
-    "id": 26,
-    "type": "single",
-    "text": "Apa tindakan yang dapat dilakukan siswa ketika menemukan keran bocor di sekolah?",
-    "options": [
-      "Membiarkannya sampai keran berhenti sendiri.",
-      "Menggunakan air sebanyak-banyaknya.",
-      "Melaporkannya kepada guru atau petugas.",
-      "Menutup semua keran di sekolah secara permanen."
-    ],
-    "answer": 2,
-    "explanation": "Teks menyarankan siswa melaporkan keran yang bocor kepada guru atau petugas."
-  },
-  {
-    "id": 27,
-    "type": "single",
-    "text": "Simpulan yang paling tepat dari teks “Hemat Air, Selamatkan Masa Depan” adalah ....",
-    "options": [
-      "Air hanya diperlukan untuk minum dan memasak.",
-      "Menghemat air merupakan tanggung jawab petugas sekolah saja.",
-      "Penghematan air dapat dilakukan melalui kebiasaan sederhana dan kerja sama.",
-      "Air bekas mencuci sayuran harus selalu dibuang."
-    ],
-    "answer": 2,
-    "explanation": "Teks memberi contoh kebiasaan sederhana di rumah dan sekolah serta menekankan bahwa penghematan air lebih efektif jika dilakukan bersama-sama."
-  },
-  {
-    "id": 28,
-    "type": "single",
-    "text": "Makna ungkapan “terbuang percuma” dalam teks adalah ....",
-    "options": [
-      "Digunakan secara tepat.",
-      "Hilang atau terpakai tanpa manfaat yang diperlukan.",
-      "Disimpan untuk digunakan kembali.",
-      "Dibagikan kepada orang lain."
-    ],
-    "answer": 1,
-    "explanation": "Terbuang percuma berarti terbuang sia-sia atau tidak memberi manfaat yang seharusnya."
-  },
-  {
-    "id": 29,
-    "type": "multiple",
-    "text": "Pilihan Ganda Kompleks — pilih semua jawaban yang benar. Manakah tindakan yang mendukung penghematan air?",
-    "options": [
-      "Mematikan keran ketika menyikat gigi.",
-      "Membiarkan pipa bocor selama beberapa hari.",
-      "Menggunakan air sesuai kebutuhan.",
-      "Melaporkan keran bocor kepada petugas."
-    ],
-    "answer": [
-      0,
-      2,
-      3
-    ],
-    "explanation": "Mematikan keran, menggunakan air sesuai kebutuhan, dan melaporkan kebocoran membantu menghemat air. Membiarkan pipa bocor justru memboroskan air."
-  },
-  {
-    "id": 30,
-    "type": "fact_opinion",
-    "text": "Kategori Fakta-Opini — tentukan apakah setiap pernyataan termasuk fakta atau opini berdasarkan isi dan bentuk pernyataannya.",
-    "statements": [
-      {
-        "statement": "Air digunakan untuk minum dan memasak.",
-        "answer": "Fakta"
-      },
-      {
-        "statement": "Menurut saya, poster hemat air merupakan cara paling menarik untuk mengajak siswa.",
-        "answer": "Opini"
-      },
-      {
-        "statement": "Kebocoran pipa dapat menyebabkan air terbuang.",
-        "answer": "Fakta"
-      }
-    ],
-    "answer": [
-      "Fakta",
-      "Opini",
-      "Fakta"
-    ],
-    "explanation": "A dan C merupakan informasi yang dapat diperiksa dan sesuai dengan teks. B adalah opini karena menyatakan penilaian pribadi melalui frasa “Menurut saya” dan “paling menarik”."
+// Isi API_URL dengan URL Supabase Edge Function setelah deployment.
+const API_URL = "https://nwtpsdwpvrowweuxlkse.supabase.co/functions/v1/tryout-api";
+const $ = (id) => document.getElementById(id);
+
+let attemptId = null, 
+    answers = Array(30).fill(null), 
+    current = 0, 
+    seconds = 3600, 
+    timerId = null, 
+    submitting = false, 
+    startedAt = 0;
+
+function showMessage(id, text, isError=true){ 
+  const el=$(id); 
+  el.textContent=text; 
+  el.style.color=isError?"#b91c1c":"#166534"; 
+}
+
+async function api(payload){
+  if(API_URL.startsWith("GANTI_")) throw new Error("Website belum dikonfigurasi. Ikuti panduan README.md.");
+  const res=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+  const data=await res.json().catch(()=>({error:"Respons server tidak valid."}));
+  if(!res.ok) throw new Error(data.error||"Permintaan gagal.");
+  return data;
+}
+
+$("startForm").addEventListener("submit",async(e)=>{
+ e.preventDefault();
+ const name=$("studentName").value.trim(), school=$("school").value.trim(), attendance=Number($("attendance").value), password=$("studentPassword").value;
+ if(!name||!school||!Number.isInteger(attendance)||attendance<1||attendance>99||!password) return;
+ const btn=$("startForm").querySelector("button");btn.disabled=true;showMessage("loginMessage","Memeriksa identitas dan password...",false);
+ try{
+   const data=await api({action:"start",name,school,attendance,password});
+   attemptId=data.attemptId; startedAt=Date.now();
+   $("who").textContent=`${name} · ${school} · Absen ${attendance}`;
+   $("loginCard").classList.add("hidden");$("quizCard").classList.remove("hidden");
+   renderQuestion(); renderNav(); updateProgress(); timerId=setInterval(tick,1000);
+ }catch(err){showMessage("loginMessage",err.message);}
+ finally{btn.disabled=false;}
+});
+
+function tick(){seconds--; if(seconds<=0){seconds=0;updateTimer();clearInterval(timerId);submitQuiz(true);return;}updateTimer();}
+function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");$("timer").textContent=`${m}:${s}`;if(seconds<=300)$("timer").style.background="#fee2e2";}
+
+function renderQuestion(){
+ const item = window.TRYOUT_QUESTIONS[current]; 
+ $("questionCount").textContent = `Soal ${current + 1} dari 30`; 
+ $("questionText").style.whiteSpace = "pre-line";
+ $("questionText").textContent = item.text || item.q;
+ 
+ const box = $("choices");
+ box.replaceChildren();
+
+ if (item.type === "single" || !item.type) {
+   const options = item.options || item.a;
+   const labels = ["A", "B", "C", "D"];
+   options.forEach((choice, i) => {
+     const label = document.createElement("label");
+     label.className = "choice" + (answers[current] === i ? " selected" : "");
+     
+     const input = document.createElement("input");
+     input.type = "radio";
+     input.name = "answer";
+     input.value = i;
+     input.checked = answers[current] === i;
+     
+     input.addEventListener("change", () => {
+       answers[current] = i;
+       renderQuestion();
+       renderNav();
+       updateProgress();
+     });
+     
+     const span = document.createElement("span");
+     span.textContent = `${labels[i]}. ${choice}`;
+     label.append(input, span);
+     box.append(label);
+   });
+ } 
+ else if (item.type === "multiple") {
+   if (!Array.isArray(answers[current])) answers[current] = [];
+   const labels = ["A", "B", "C", "D"];
+   
+   item.options.forEach((choice, i) => {
+     const label = document.createElement("label");
+     const isChecked = answers[current].includes(i);
+     label.className = "choice" + (isChecked ? " selected" : "");
+     
+     const input = document.createElement("input");
+     input.type = "checkbox";
+     input.value = i;
+     input.checked = isChecked;
+     
+     input.addEventListener("change", () => {
+       if (input.checked) {
+         if (!answers[current].includes(i)) answers[current].push(i);
+       } else {
+         answers[current] = answers[current].filter(idx => idx !== i);
+       }
+       renderQuestion();
+       renderNav();
+       updateProgress();
+     });
+     
+     const span = document.createElement("span");
+     span.textContent = `${labels[i]}. ${choice}`;
+     label.append(input, span);
+     box.append(label);
+   });
+ } 
+ else if (item.type === "true_false" || item.type === "fact_opinion") {
+   if (typeof answers[current] !== "object" || answers[current] === null || Array.isArray(answers[current])) {
+     answers[current] = {};
+   }
+
+   const isTrueFalse = item.type === "true_false";
+   const col1Header = "Pernyataan";
+   const col2Header = isTrueFalse ? "Benar" : "Fakta";
+   const col3Header = isTrueFalse ? "Salah" : "Opini";
+
+   const table = document.createElement("table");
+   table.style.width = "100%";
+   table.style.borderCollapse = "collapse";
+   table.style.marginTop = "10px";
+
+   table.innerHTML = `
+     <thead>
+       <tr style="background:#f1f5f9; text-align:left;">
+         <th style="padding:8px; border:1px solid #cbd5e1;">${col1Header}</th>
+         <th style="padding:8px; border:1px solid #cbd5e1; text-align:center; width:80px;">${col2Header}</th>
+         <th style="padding:8px; border:1px solid #cbd5e1; text-align:center; width:80px;">${col3Header}</th>
+       </tr>
+     </thead>
+   `;
+
+   const tbody = document.createElement("tbody");
+   item.statements.forEach((st, i) => {
+     const tr = document.createElement("tr");
+     
+     const tdStatement = document.createElement("td");
+     tdStatement.style.padding = "8px";
+     tdStatement.style.border = "1px solid #cbd5e1";
+     tdStatement.textContent = st.statement;
+
+     const tdOpt1 = document.createElement("td");
+     tdOpt1.style.padding = "8px";
+     tdOpt1.style.border = "1px solid #cbd5e1";
+     tdOpt1.style.textAlign = "center";
+     const radio1 = document.createElement("input");
+     radio1.type = "radio";
+     radio1.name = `statement_${current}_${i}`;
+     radio1.value = col2Header;
+     radio1.checked = answers[current][i] === col2Header;
+
+     radio1.addEventListener("change", () => {
+       answers[current][i] = col2Header;
+       renderNav();
+       updateProgress();
+     });
+     tdOpt1.append(radio1);
+
+     const tdOpt2 = document.createElement("td");
+     tdOpt2.style.padding = "8px";
+     tdOpt2.style.border = "1px solid #cbd5e1";
+     tdOpt2.style.textAlign = "center";
+     const radio2 = document.createElement("input");
+     radio2.type = "radio";
+     radio2.name = `statement_${current}_${i}`;
+     radio2.value = col3Header;
+     radio2.checked = answers[current][i] === col3Header;
+
+     radio2.addEventListener("change", () => {
+       answers[current][i] = col3Header;
+       renderNav();
+       updateProgress();
+     });
+     tdOpt2.append(radio2);
+
+     tr.append(tdStatement, tdOpt1, tdOpt2);
+     tbody.append(tr);
+   });
+
+   table.append(tbody);
+   box.append(table);
+ }
+
+ $("prevBtn").disabled = current === 0;
+ $("nextBtn").disabled = current === 29;
+ renderNav();
+}
+
+function isAnswered(a, item) {
+  if (a === null || a === undefined) return false;
+  if (typeof a === "number") return true;
+  if (Array.isArray(a)) return a.length > 0;
+  if (typeof a === "object") {
+    const totalStatements = item && item.statements ? item.statements.length : 0;
+    return Object.keys(a).length === totalStatements;
   }
-];
+  return false;
+}
+
+function renderNav(){
+  const box=$("questionNav");
+  box.replaceChildren();
+  answers.forEach((a,i)=>{
+    const item = window.TRYOUT_QUESTIONS[i];
+    const answered = isAnswered(a, item);
+    const b=document.createElement("button");
+    b.type="button";
+    b.className="navBtn"+(answered?" answered":"")+(i===current?" current":"");
+    b.textContent=i+1;
+    b.setAttribute("aria-label",`Buka soal ${i+1}`);
+    b.addEventListener("click",()=>{current=i;renderQuestion();});
+    box.append(b);
+  });
+}
+
+function updateProgress(){
+  const count = answers.filter((a, i) => isAnswered(a, window.TRYOUT_QUESTIONS[i])).length;
+  $("progressBar").style.width=(count/30*100)+"%";
+  $("quizMessage").textContent=`${count} dari 30 soal telah dijawab.`;
+  $("quizMessage").style.color="#64748b";
+}
+
+$("prevBtn").addEventListener("click",()=>{if(current>0){current--;renderQuestion();}});
+$("nextBtn").addEventListener("click",()=>{if(current<29){current++;renderQuestion();}});
+$("submitBtn").addEventListener("click",()=>submitQuiz(false));
+
+
+function getAnswerLabel(item, answer) {
+  const letters = ["A", "B", "C", "D"];
+  if (item.type === "single") {
+    return `${letters[item.answer]}. ${item.options[item.answer]}`;
+  }
+  if (item.type === "multiple") {
+    return item.answer.map(i => `${letters[i]}. ${item.options[i]}`).join("; ");
+  }
+  if (item.type === "true_false" || item.type === "fact_opinion") {
+    return item.statements.map((st, i) => `${String.fromCharCode(65+i)}. ${st.statement} — ${item.answer[i]}`).join("\n");
+  }
+  return "";
+}
+
+function answerIsCorrect(item, userAnswer) {
+  if (item.type === "single") return userAnswer === item.answer;
+  if (item.type === "multiple") {
+    if (!Array.isArray(userAnswer)) return false;
+    const given = [...userAnswer].sort((a,b) => a-b);
+    const key = [...item.answer].sort((a,b) => a-b);
+    return given.length === key.length && given.every((value, i) => value === key[i]);
+  }
+  if (item.type === "true_false" || item.type === "fact_opinion") {
+    if (!userAnswer || typeof userAnswer !== "object" || Array.isArray(userAnswer)) return false;
+    return item.answer.every((value, i) => userAnswer[i] === value);
+  }
+  return false;
+}
+
+function getUserAnswerLabel(item, userAnswer) {
+  const letters = ["A", "B", "C", "D"];
+  if (userAnswer === null || userAnswer === undefined ||
+      (Array.isArray(userAnswer) && userAnswer.length === 0) ||
+      (typeof userAnswer === "object" && !Array.isArray(userAnswer) && Object.keys(userAnswer).length === 0)) {
+    return "Belum dijawab";
+  }
+  if (item.type === "single") {
+    return Number.isInteger(userAnswer) && item.options[userAnswer] !== undefined
+      ? `${letters[userAnswer]}. ${item.options[userAnswer]}` : "Belum dijawab";
+  }
+  if (item.type === "multiple") {
+    return userAnswer.map(i => `${letters[i]}. ${item.options[i]}`).join("; ");
+  }
+  if (item.type === "true_false" || item.type === "fact_opinion") {
+    return item.statements.map((st, i) => `${String.fromCharCode(65+i)}. ${userAnswer[i] || "Belum dijawab"}`).join("; ");
+  }
+  return "Belum dijawab";
+}
+
+function renderReview() {
+  const reviewList = $("reviewList");
+  if (!reviewList) return;
+  reviewList.replaceChildren();
+
+  window.TRYOUT_QUESTIONS.forEach((item, index) => {
+    const correct = answerIsCorrect(item, answers[index]);
+    const card = document.createElement("article");
+    card.className = `review-item ${correct ? "review-correct" : "review-incorrect"}`;
+
+    const heading = document.createElement("h4");
+    heading.textContent = `Soal ${index + 1} · ${correct ? "Benar" : "Perlu dipelajari lagi"}`;
+
+    const question = document.createElement("p");
+    question.className = "review-question";
+    question.textContent = item.text;
+
+    const userAnswer = document.createElement("p");
+    userAnswer.textContent = `Jawaban Anda: ${getUserAnswerLabel(item, answers[index])}`;
+
+    const key = document.createElement("p");
+    key.textContent = `Kunci jawaban: ${getAnswerLabel(item, answers[index])}`;
+
+    const explanation = document.createElement("p");
+    explanation.textContent = `Pembahasan: ${item.explanation}`;
+
+    card.append(heading, question, userAnswer, key, explanation);
+    reviewList.append(card);
+  });
+}
+
+async function submitQuiz(auto=false){
+ if(submitting||!attemptId)return;
+ if(!auto){
+   const blank = answers.filter((a, i) => !isAnswered(a, window.TRYOUT_QUESTIONS[i])).length;
+   if(!confirm(blank?`Masih ada ${blank} soal belum lengkap/kosong. Kumpulkan sekarang?`:"Yakin ingin mengumpulkan jawaban?"))return;
+ }
+ submitting=true;clearInterval(timerId);$("submitBtn").disabled=true;showMessage("quizMessage","Mengirim jawaban...",false);
+ try{
+   const elapsed=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
+   const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed});
+   $("quizCard").classList.add("hidden");$("resultCard").classList.remove("hidden");
+   $("resultText").textContent=`Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
+ }catch(err){
+   submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);
+   if(seconds>0)timerId=setInterval(tick,1000);
+ }
+}
+
+updateTimer();
