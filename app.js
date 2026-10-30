@@ -325,6 +325,7 @@ $("resultText").textContent =
   `Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
 
 // Tampilkan pembahasan seluruh soal
+     renderReview();
  }catch(err){
    submitting=false;$("submitBtn").disabled=false;showMessage("quizMessage",err.message);
    if(seconds>0)timerId=setInterval(tick,1000);
