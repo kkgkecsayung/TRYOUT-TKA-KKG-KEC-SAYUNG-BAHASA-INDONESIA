@@ -15,10 +15,13 @@ window.TRYOUT_QUESTIONS = [
   {
     "id": 1,
     "type": "single",
-    "passage": 'Hutan mangrove tumbuh di wilayah pesisir yang dipengaruhi oleh pasang surut air laut. Tumbuhan ini memiliki akar yang kuat dan mampu bertahan di lingkungan berlumpur. Mangrove mempunyai peran penting bagi kehidupan di pantai.
+   "passage": `Hutan mangrove tumbuh di wilayah pesisir yang dipengaruhi oleh pasang surut air laut. Tumbuhan ini memiliki akar yang kuat dan mampu bertahan di lingkungan berlumpur. Mangrove mempunyai peran penting bagi kehidupan di pantai.
+
 Akar mangrove dapat membantu menahan lumpur dan mengurangi pengikisan pantai. Hutan ini juga menjadi tempat hidup berbagai hewan, seperti kepiting, ikan kecil, dan burung. Selain itu, kawasan mangrove dapat menjadi tempat berkembang biak bagi beberapa jenis ikan.
+
 Sayangnya, sebagian hutan mangrove mengalami kerusakan akibat penebangan dan pembangunan yang tidak terkendali. Jika kerusakan terus terjadi, habitat hewan akan berkurang dan pantai menjadi lebih rentan mengalami pengikisan.
-Masyarakat dapat membantu menjaga kelestarian mangrove dengan tidak membuang sampah sembarangan dan mengikuti kegiatan penanaman pohon. Pemerintah dan warga juga perlu bekerja sama melindungi kawasan pesisir. Dengan demikian, manfaat hutan mangrove dapat dirasakan oleh generasi sekarang dan mendatang.',
+
+Masyarakat dapat membantu menjaga kelestarian mangrove dengan tidak membuang sampah sembarangan dan mengikuti kegiatan penanaman pohon. Pemerintah dan warga juga perlu bekerja sama melindungi kawasan pesisir. Dengan demikian, manfaat hutan mangrove dapat dirasakan oleh generasi sekarang dan mendatang.`,
 
     "text": "Bacalah teks “Hutan Mangrove dan Manfaatnya”. Apa fungsi akar mangrove berdasarkan teks?",
     "options": [
