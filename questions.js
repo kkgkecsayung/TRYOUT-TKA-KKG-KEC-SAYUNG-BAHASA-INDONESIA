@@ -15,6 +15,9 @@ window.TRYOUT_QUESTIONS = [
   {
     "id": 1,
     "type": "single",
+    
+      "passageTitle": "Hutan Mangrove dan Manfaatnya",
+    
    "passage": `Hutan mangrove tumbuh di wilayah pesisir yang dipengaruhi oleh pasang surut air laut. Tumbuhan ini memiliki akar yang kuat dan mampu bertahan di lingkungan berlumpur. Mangrove mempunyai peran penting bagi kehidupan di pantai.
 
 Akar mangrove dapat membantu menahan lumpur dan mengurangi pengikisan pantai. Hutan ini juga menjadi tempat hidup berbagai hewan, seperti kepiting, ikan kecil, dan burung. Selain itu, kawasan mangrove dapat menjadi tempat berkembang biak bagi beberapa jenis ikan.
@@ -117,11 +120,15 @@ Masyarakat dapat membantu menjaga kelestarian mangrove dengan tidak membuang sam
   {
     "id": 7,
     "type": "single",
-       "passage": `Sepeda untuk Rani
-Setiap pagi, Rani berjalan kaki menuju sekolah. Rumahnya cukup jauh, tetapi ia tidak pernah mengeluh. Suatu hari, hujan turun deras ketika Rani pulang. Ia berteduh di depan warung sambil menunggu hujan reda.
+     "passageTitle": "Sepeda Untuk Rani",
+       "passage": `Setiap pagi, Rani berjalan kaki menuju sekolah. Rumahnya cukup jauh, tetapi ia tidak pernah mengeluh. Suatu hari, hujan turun deras ketika Rani pulang. Ia berteduh di depan warung sambil menunggu hujan reda.
+
 Pak Damar, pemilik warung, melihat Rani yang basah kuyup. Ia menawarkan Rani untuk menunggu di dalam warung. Sambil menunggu, Rani bercerita bahwa ia ingin mengikuti lomba membaca puisi di sekolah, tetapi harus berlatih lebih lama setelah pulang.
+
 Keesokan harinya, Pak Damar meminjamkan sebuah sepeda kepada Rani. Sepeda itu milik anaknya yang sudah jarang digunakan. Rani sangat senang, tetapi ia sempat ragu menerimanya. Ia khawatir tidak mampu menjaga sepeda tersebut.
+
 Pak Damar meyakinkan Rani agar menggunakan sepeda itu dengan bertanggung jawab. Sejak saat itu, perjalanan Rani ke sekolah menjadi lebih singkat. Ia memiliki lebih banyak waktu untuk berlatih membaca puisi.
+
 Saat lomba berlangsung, Rani tampil percaya diri. Ia tidak memenangkan juara pertama, tetapi gurunya memuji keberanian dan kesungguhannya. Rani menyadari bahwa bantuan kecil dapat memberikan kesempatan besar bagi seseorang.
 .`,
     "text": "Dalam cerita “Sepeda untuk Rani”, di manakah Rani berteduh ketika hujan turun?",
@@ -218,10 +225,14 @@ Saat lomba berlangsung, Rani tampil percaya diri. Ia tidak memenangkan juara per
   {
     "id": 13,
     "type": "single",
-       "passage": `Mengurangi Sampah Plastik di Sekolah
-Sampah plastik menjadi salah satu masalah lingkungan yang perlu diperhatikan. Di sekolah, sampah ini dapat berasal dari bungkus makanan, sedotan, dan botol minuman sekali pakai.
+     "passageTitle": "Mengurangi Sampah Plastik di Sekolah",
+    
+       "passage": `Sampah plastik menjadi salah satu masalah lingkungan yang perlu diperhatikan. Di sekolah, sampah ini dapat berasal dari bungkus makanan, sedotan, dan botol minuman sekali pakai.
+
 Salah satu cara mengurangi sampah plastik adalah membawa botol minum dan kotak makanan sendiri. Siswa juga dapat menggunakan kembali barang yang masih layak. Sampah plastik yang sudah tidak terpakai sebaiknya dipilah sesuai jenisnya agar lebih mudah dikelola.
+
 Sekolah dapat menyediakan tempat sampah terpilah dan mengadakan kegiatan edukasi lingkungan. Namun, fasilitas tersebut tidak akan memberikan hasil maksimal jika warga sekolah tidak menggunakannya dengan benar. Oleh sebab itu, kebiasaan menjaga kebersihan perlu dilakukan bersama-sama.
+
 Pengelolaan sampah bukan hanya tugas petugas kebersihan. Guru, siswa, tenaga kependidikan, dan pengelola kantin dapat berperan sesuai tanggung jawab masing-masing. Jika dilakukan secara konsisten, kebiasaan sederhana ini dapat membantu mengurangi jumlah sampah yang mencemari lingkungan.
 .`,
     "text": "Menurut teks “Mengurangi Sampah Plastik di Sekolah”, sampah plastik di sekolah dapat berasal dari ....",
@@ -318,11 +329,17 @@ Pengelolaan sampah bukan hanya tugas petugas kebersihan. Guru, siswa, tenaga kep
   {
     "id": 19,
     "type": "single",
-     "passage": `Perpustakaan Keliling di Desa Sukamaju
-Setiap hari Rabu, sebuah mobil perpustakaan keliling mengunjungi Desa Sukamaju. Mobil tersebut membawa berbagai jenis buku, mulai dari cerita anak hingga buku pengetahuan. Anak-anak biasanya berkumpul di balai desa untuk membaca buku yang mereka sukai.
+    
+      "passageTitle": "Perpustakaan Keliling di Desa Sukamaju",
+    
+     "passage": `Setiap hari Rabu, sebuah mobil perpustakaan keliling mengunjungi Desa Sukamaju. Mobil tersebut membawa berbagai jenis buku, mulai dari cerita anak hingga buku pengetahuan. Anak-anak biasanya berkumpul di balai desa untuk membaca buku yang mereka sukai.
+
 Pada awalnya, hanya sedikit anak yang datang. Sebagian anak menganggap membaca buku sebagai kegiatan yang membosankan. Namun, petugas perpustakaan mengadakan kegiatan membaca cerita bersama dan kuis sederhana. Anak-anak yang berhasil menjawab pertanyaan mendapatkan pembatas buku sebagai hadiah.
+
 Kegiatan tersebut membuat suasana membaca menjadi lebih menarik. Jumlah pengunjung pun bertambah. Beberapa anak bahkan mulai meminjam buku untuk dibaca di rumah.
+
 Mira, salah satu pengunjung, merasa senang karena dapat membaca buku tanpa harus pergi jauh ke kota. Ia juga mengajak teman-temannya untuk datang setiap minggu.
+
 Kepala desa berharap kegiatan ini terus berlangsung. Menurutnya, perpustakaan keliling dapat membantu meningkatkan minat baca anak-anak. Dukungan warga sangat diperlukan agar kegiatan tersebut dapat berjalan dengan baik.
 `,
     "text": "Kapan mobil perpustakaan keliling mengunjungi Desa Sukamaju?",
