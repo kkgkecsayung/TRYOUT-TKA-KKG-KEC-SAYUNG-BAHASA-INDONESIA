@@ -227,6 +227,87 @@ $("prevBtn").addEventListener("click",()=>{if(current>0){current--;renderQuestio
 $("nextBtn").addEventListener("click",()=>{if(current<29){current++;renderQuestion();}});
 $("submitBtn").addEventListener("click",()=>submitQuiz(false));
 
+
+function getAnswerLabel(item, answer) {
+  const letters = ["A", "B", "C", "D"];
+  if (item.type === "single") {
+    return `${letters[item.answer]}. ${item.options[item.answer]}`;
+  }
+  if (item.type === "multiple") {
+    return item.answer.map(i => `${letters[i]}. ${item.options[i]}`).join("; ");
+  }
+  if (item.type === "true_false" || item.type === "fact_opinion") {
+    return item.statements.map((st, i) => `${String.fromCharCode(65+i)}. ${st.statement} — ${item.answer[i]}`).join("\n");
+  }
+  return "";
+}
+
+function answerIsCorrect(item, userAnswer) {
+  if (item.type === "single") return userAnswer === item.answer;
+  if (item.type === "multiple") {
+    if (!Array.isArray(userAnswer)) return false;
+    const given = [...userAnswer].sort((a,b) => a-b);
+    const key = [...item.answer].sort((a,b) => a-b);
+    return given.length === key.length && given.every((value, i) => value === key[i]);
+  }
+  if (item.type === "true_false" || item.type === "fact_opinion") {
+    if (!userAnswer || typeof userAnswer !== "object" || Array.isArray(userAnswer)) return false;
+    return item.answer.every((value, i) => userAnswer[i] === value);
+  }
+  return false;
+}
+
+function getUserAnswerLabel(item, userAnswer) {
+  const letters = ["A", "B", "C", "D"];
+  if (userAnswer === null || userAnswer === undefined ||
+      (Array.isArray(userAnswer) && userAnswer.length === 0) ||
+      (typeof userAnswer === "object" && !Array.isArray(userAnswer) && Object.keys(userAnswer).length === 0)) {
+    return "Belum dijawab";
+  }
+  if (item.type === "single") {
+    return Number.isInteger(userAnswer) && item.options[userAnswer] !== undefined
+      ? `${letters[userAnswer]}. ${item.options[userAnswer]}` : "Belum dijawab";
+  }
+  if (item.type === "multiple") {
+    return userAnswer.map(i => `${letters[i]}. ${item.options[i]}`).join("; ");
+  }
+  if (item.type === "true_false" || item.type === "fact_opinion") {
+    return item.statements.map((st, i) => `${String.fromCharCode(65+i)}. ${userAnswer[i] || "Belum dijawab"}`).join("; ");
+  }
+  return "Belum dijawab";
+}
+
+function renderReview() {
+  const reviewList = $("reviewList");
+  if (!reviewList) return;
+  reviewList.replaceChildren();
+
+  window.TRYOUT_QUESTIONS.forEach((item, index) => {
+    const correct = answerIsCorrect(item, answers[index]);
+    const card = document.createElement("article");
+    card.className = `review-item ${correct ? "review-correct" : "review-incorrect"}`;
+
+    const heading = document.createElement("h4");
+    heading.textContent = `Soal ${index + 1} · ${correct ? "Benar" : "Perlu dipelajari lagi"}`;
+
+    const question = document.createElement("p");
+    question.className = "review-question";
+    question.textContent = item.text;
+
+    const userAnswer = document.createElement("p");
+    userAnswer.textContent = `Jawaban Anda: ${getUserAnswerLabel(item, answers[index])}`;
+
+    const key = document.createElement("p");
+    key.textContent = `Kunci jawaban: ${getAnswerLabel(item, answers[index])}`;
+
+    const explanation = document.createElement("p");
+    explanation.textContent = `Pembahasan: ${item.explanation}`;
+
+    card.append(heading, question, userAnswer, key, explanation);
+    reviewList.append(card);
+  });
+}
+
 async function submitQuiz(auto=false){
  if(submitting||!attemptId)return;
  if(!auto){
