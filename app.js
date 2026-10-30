@@ -44,12 +44,31 @@ function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=
 
 function renderQuestion(){
  const item = window.TRYOUT_QUESTIONS[current];
+
 const passageBox = $("passageBox");
 
- if (passageBox) {
-   passageBox.textContent = item.passage || "";
-   passageBox.classList.toggle("hidden", !item.passage);
- }
+if (passageBox) {
+  passageBox.innerHTML = "";
+
+  if (item.passage) {
+    // Membuat judul bacaan
+    const title = document.createElement("h3");
+    title.textContent = item.passageTitle || "Bacaan";
+
+    // Membuat isi bacaan
+    const content = document.createElement("div");
+    content.textContent = item.passage;
+
+    // Menampilkan judul dan isi bacaan
+    passageBox.appendChild(title);
+    passageBox.appendChild(content);
+
+    passageBox.classList.remove("hidden");
+  } else {
+    passageBox.classList.add("hidden");
+  }
+}
+
  $("questionCount").textContent = `Soal ${current + 1} dari 30`; 
  $("questionText").style.whiteSpace = "pre-line";
  $("questionText").textContent = item.text || item.q;
