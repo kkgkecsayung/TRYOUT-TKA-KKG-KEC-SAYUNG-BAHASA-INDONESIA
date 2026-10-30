@@ -292,7 +292,7 @@ function renderReview() {
 
     const question = document.createElement("p");
     question.className = "review-question";
-    question.textContent = item.text;
+    question.textContent = item.text || item.q || "";
 
     const userAnswer = document.createElement("p");
     userAnswer.textContent = `Jawaban Anda: ${getUserAnswerLabel(item, answers[index])}`;
