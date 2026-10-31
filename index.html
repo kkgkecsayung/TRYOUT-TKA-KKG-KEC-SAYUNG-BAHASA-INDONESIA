@@ -18,19 +18,19 @@
       <span class="tryout-number">01</span><span class="tryout-title">Tryout 1</span>
       <span class="tryout-desc">Paket soal tersedia · 30 soal</span><span class="tryout-action">Pilih paket <span aria-hidden="true">→</span></span>
     </button>
-    <article class="tryout-option upcoming" aria-disabled="true">
+    <button class="tryout-option available" id="selectTryout2" type="button">
       <span class="tryout-number">02</span><span class="tryout-title">Tryout 2</span>
-      <span class="tryout-desc">Paket soal sedang disiapkan</span><span class="coming-soon">Segera hadir</span>
-    </article>
+      <span class="tryout-desc">Paket soal tersedia · 30 soal</span><span class="tryout-action">Pilih paket <span aria-hidden="true">→</span></span>
+    </button>
     <article class="tryout-option upcoming" aria-disabled="true">
       <span class="tryout-number">03</span><span class="tryout-title">Tryout 3</span>
       <span class="tryout-desc">Paket soal sedang disiapkan</span><span class="coming-soon">Segera hadir</span>
     </article>
   </div>
-  <div class="menu-note"><span aria-hidden="true">ⓘ</span> Tryout 2 dan Tryout 3 akan dapat dipilih setelah soal ditambahkan.</div>
+  <div class="menu-note"><span aria-hidden="true">ⓘ</span> Tryout 3 akan dapat dipilih setelah soal ditambahkan.</div>
 </section>
 <section id="loginCard" class="card hidden">
-<button id="backToMenu" class="text-button" type="button">← Kembali ke menu paket</button><h2>Masuk Tryout 1</h2><p>Isi identitas dengan benar dan masukkan token bersama yang diberikan guru.</p>
+<button id="backToMenu" class="text-button" type="button">← Kembali ke menu paket</button><h2 id="loginTitle">Masuk Tryout 1</h2><p>Isi identitas dengan benar dan masukkan token bersama yang diberikan guru.</p>
 <form id="startForm">
   <label>Asal sekolah
     <select id="school" required>
@@ -89,5 +89,5 @@
 </section>
 <section id="resultCard" class="card hidden"><h2>Tryout Selesai</h2><p id="resultText"></p><p class="muted">Nilai telah dikirim untuk direkap oleh guru.</p><h3>Pembahasan</h3><div id="reviewList"></div><button class="secondary" onclick="location.reload()">Kembali ke halaman awal</button></section>
 </main><footer><div class="wrap">Tryout TKA SD · made and compiled by liestiyono . 2026 </div></footer>
-<script src="questions.js"></script><script src="app.js"></script>
+<script src="questions.js"></script>\n<script src="questions-paket-2.js"></script>\n<script src="app.js"></script>
 </body></html>

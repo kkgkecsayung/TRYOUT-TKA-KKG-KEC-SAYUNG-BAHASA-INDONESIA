@@ -2,14 +2,32 @@
 const API_URL = "https://nwtpsdwpvrowweuxlkse.supabase.co/functions/v1/tryout-api";
 const $ = (id) => document.getElementById(id);
 
-// Navigasi menu paket: Tryout 1 aktif, paket 2 dan 3 disiapkan untuk soal mendatang.
+// Pemilihan paket soal.
 const tryoutMenu = $("tryoutMenu");
 const loginCard = $("loginCard");
-$("selectTryout1")?.addEventListener("click", () => {
+let selectedTryout = 1;
+let activeQuestions = window.TRYOUT_QUESTIONS;
+
+function chooseTryout(number) {
+  selectedTryout = number;
+  activeQuestions = number === 2
+    ? window.TRYOUT_QUESTIONS_PAKET_2
+    : window.TRYOUT_QUESTIONS;
+
+  if (!Array.isArray(activeQuestions) || activeQuestions.length !== 30) {
+    alert("Bank soal Tryout " + number + " belum termuat dengan benar.");
+    return;
+  }
+
+  $("loginTitle").textContent = "Masuk Tryout " + number;
   tryoutMenu.classList.add("hidden");
   loginCard.classList.remove("hidden");
   loginCard.scrollIntoView({ behavior: "smooth", block: "start" });
-});
+}
+
+$("selectTryout1")?.addEventListener("click", () => chooseTryout(1));
+$("selectTryout2")?.addEventListener("click", () => chooseTryout(2));
+
 $("backToMenu")?.addEventListener("click", () => {
   loginCard.classList.add("hidden");
   tryoutMenu.classList.remove("hidden");
@@ -45,7 +63,7 @@ $("startForm").addEventListener("submit",async(e)=>{
  if(!name||!school||!Number.isInteger(attendance)||attendance<1||attendance>99||!password) return;
  const btn=$("startForm").querySelector("button");btn.disabled=true;showMessage("loginMessage","Memeriksa identitas dan password...",false);
  try{
-   const data=await api({action:"start",name,school,attendance,password});
+   const data=await api({action:"start",name,school,attendance,password,tryoutNumber:selectedTryout});
    attemptId=data.attemptId; startedAt=Date.now();
    $("who").textContent=`${name} · ${school} · Absen ${attendance}`;
    $("loginCard").classList.add("hidden");$("quizCard").classList.remove("hidden");
@@ -58,7 +76,7 @@ function tick(){seconds--; if(seconds<=0){seconds=0;updateTimer();clearInterval(
 function updateTimer(){const m=String(Math.floor(seconds/60)).padStart(2,"0"),s=String(seconds%60).padStart(2,"0");$("timer").textContent=`${m}:${s}`;if(seconds<=300)$("timer").style.background="#fee2e2";}
 
 function renderQuestion(){
- const item = window.TRYOUT_QUESTIONS[current];
+ const item = activeQuestions[current];
 
 const passageBox = $("passageBox");
 
@@ -244,7 +262,7 @@ function renderNav(){
   const box=$("questionNav");
   box.replaceChildren();
   answers.forEach((a,i)=>{
-    const item = window.TRYOUT_QUESTIONS[i];
+    const item = activeQuestions[i];
     const answered = isAnswered(a, item);
     const b=document.createElement("button");
     b.type="button";
@@ -257,7 +275,7 @@ function renderNav(){
 }
 
 function updateProgress(){
-  const count = answers.filter((a, i) => isAnswered(a, window.TRYOUT_QUESTIONS[i])).length;
+  const count = answers.filter((a, i) => isAnswered(a, activeQuestions[i])).length;
   $("progressBar").style.width=(count/30*100)+"%";
   $("quizMessage").textContent=`${count} dari 30 soal telah dijawab.`;
   $("quizMessage").style.color="#64748b";
@@ -322,7 +340,7 @@ function renderReview() {
   if (!reviewList) return;
   reviewList.replaceChildren();
 
-  window.TRYOUT_QUESTIONS.forEach((item, index) => {
+  activeQuestions.forEach((item, index) => {
     const correct = answerIsCorrect(item, answers[index]);
     const card = document.createElement("article");
     card.className = `review-item ${correct ? "review-correct" : "review-incorrect"}`;
@@ -351,13 +369,13 @@ function renderReview() {
 async function submitQuiz(auto=false){
  if(submitting||!attemptId)return;
  if(!auto){
-   const blank = answers.filter((a, i) => !isAnswered(a, window.TRYOUT_QUESTIONS[i])).length;
+   const blank = answers.filter((a, i) => !isAnswered(a, activeQuestions[i])).length;
    if(!confirm(blank?`Masih ada ${blank} soal belum lengkap/kosong. Kumpulkan sekarang?`:"Yakin ingin mengumpulkan jawaban?"))return;
  }
  submitting=true;clearInterval(timerId);$("submitBtn").disabled=true;showMessage("quizMessage","Mengirim jawaban...",false);
  try{
    const elapsed=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
-   const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed});
+   const result=await api({action:"submit",attemptId,answers,elapsedSeconds:elapsed,tryoutNumber:selectedTryout});
    $("quizCard").classList.add("hidden");$("resultCard").classList.remove("hidden");
    $("resultText").textContent=`Terima kasih, ${result.name}. Nilai Anda: ${result.score}/100 (${result.correct}/30 jawaban benar).`;
      renderReview();
