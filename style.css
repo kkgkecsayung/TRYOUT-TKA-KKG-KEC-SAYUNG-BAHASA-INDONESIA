@@ -300,4 +300,38 @@ footer {
     font-size: 15px;
   }
 }
-```
+
+/* MENU PILIHAN PAKET TRYOUT */
+.brand-tag {
+  display: inline-block;
+  margin-bottom: 9px;
+  padding: 5px 10px;
+  border: 1px solid #ffffff40;
+  border-radius: 999px;
+  color: #dce8ff;
+  font-size: .75rem;
+  font-weight: 750;
+  letter-spacing: .09em;
+}
+.menu-card { padding: clamp(20px, 4vw, 36px); }
+.menu-intro { max-width: 650px; margin-bottom: 24px; }
+.menu-intro h2 { margin: 8px 0; font-size: clamp(1.35rem, 3vw, 1.8rem); }
+.menu-intro p { margin: 0; color: #64748b; line-height: 1.65; }
+.tryout-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tryout-option {
+  min-height: 220px; padding: 20px; border: 1px solid #dbe3ef; border-radius: 16px;
+  display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 9px;
+  background: #fff; color: #172033; font: inherit;
+}
+.tryout-option.available { cursor: pointer; border-color: #93c5fd; background: linear-gradient(160deg, #eff6ff, #fff 78%); transition: transform .15s, box-shadow .15s; }
+.tryout-option.available:hover { transform: translateY(-3px); box-shadow: 0 12px 26px #1d4ed814; }
+.tryout-number { color: #2563eb; font-size: .78rem; font-weight: 850; letter-spacing: .12em; }
+.tryout-title { font-size: 1.3rem; font-weight: 800; }
+.tryout-desc { color: #64748b; font-size: .9rem; line-height: 1.45; }
+.tryout-action { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: auto; padding-top: 12px; color: #1d4ed8; font-size: .92rem; font-weight: 750; }
+.upcoming { background: #f8fafc; color: #64748b; border-style: dashed; }
+.coming-soon { margin-top: auto; padding: 6px 10px; border-radius: 999px; background: #e2e8f0; color: #475569; font-size: .78rem; font-weight: 750; }
+.menu-note { margin-top: 20px; padding: 12px 14px; border-radius: 10px; background: #f8fafc; color: #64748b; font-size: .86rem; line-height: 1.5; }
+.text-button { margin-bottom: 16px; padding: 6px 0; background: transparent; color: #1d4ed8; font-size: .9rem; }
+.text-button:hover { text-decoration: underline; }
+@media (max-width: 700px) { .tryout-grid { grid-template-columns: 1fr; } .tryout-option { min-height: 180px; } }

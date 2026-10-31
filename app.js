@@ -2,6 +2,21 @@
 const API_URL = "https://nwtpsdwpvrowweuxlkse.supabase.co/functions/v1/tryout-api";
 const $ = (id) => document.getElementById(id);
 
+// Navigasi menu paket: Tryout 1 aktif, paket 2 dan 3 disiapkan untuk soal mendatang.
+const tryoutMenu = $("tryoutMenu");
+const loginCard = $("loginCard");
+$("selectTryout1")?.addEventListener("click", () => {
+  tryoutMenu.classList.add("hidden");
+  loginCard.classList.remove("hidden");
+  loginCard.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+$("backToMenu")?.addEventListener("click", () => {
+  loginCard.classList.add("hidden");
+  tryoutMenu.classList.remove("hidden");
+  tryoutMenu.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+
 let attemptId = null, 
     answers = Array(30).fill(null), 
     current = 0, 

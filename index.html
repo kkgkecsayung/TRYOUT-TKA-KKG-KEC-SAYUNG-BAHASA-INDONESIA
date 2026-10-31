@@ -5,10 +5,32 @@
 <title>Tryout TKA SD - Bahasa Indonesia</title><link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top"><div class="wrap"><h1>Tryout TKA SD KEC SAYUNG</h1><p>Bahasa Indonesia · 30 soal</p></div></header>
+<header class="top"><div class="wrap"><div class="brand-tag">KKG KECAMATAN SAYUNG</div><h1>Tryout TKA SD</h1><p>Bahasa Indonesia · Latihan dan evaluasi</p></div></header>
 <main class="wrap">
-<section id="loginCard" class="card">
-<h2>Masuk Tryout</h2><p>Isi identitas dengan benar dan masukkan token bersama yang diberikan guru.</p>
+<section id="tryoutMenu" class="card menu-card">
+  <div class="menu-intro">
+    <span class="eyebrow">PILIH PAKET LATIHAN</span>
+    <h2>Menu Tryout Bahasa Indonesia</h2>
+    <p>Pilih paket tryout yang ingin dikerjakan. Setiap paket memiliki kumpulan soal dan rekap nilai tersendiri.</p>
+  </div>
+  <div class="tryout-grid">
+    <button class="tryout-option available" id="selectTryout1" type="button">
+      <span class="tryout-number">01</span><span class="tryout-title">Tryout 1</span>
+      <span class="tryout-desc">Paket soal tersedia · 30 soal</span><span class="tryout-action">Pilih paket <span aria-hidden="true">→</span></span>
+    </button>
+    <article class="tryout-option upcoming" aria-disabled="true">
+      <span class="tryout-number">02</span><span class="tryout-title">Tryout 2</span>
+      <span class="tryout-desc">Paket soal sedang disiapkan</span><span class="coming-soon">Segera hadir</span>
+    </article>
+    <article class="tryout-option upcoming" aria-disabled="true">
+      <span class="tryout-number">03</span><span class="tryout-title">Tryout 3</span>
+      <span class="tryout-desc">Paket soal sedang disiapkan</span><span class="coming-soon">Segera hadir</span>
+    </article>
+  </div>
+  <div class="menu-note"><span aria-hidden="true">ⓘ</span> Tryout 2 dan Tryout 3 akan dapat dipilih setelah soal ditambahkan.</div>
+</section>
+<section id="loginCard" class="card hidden">
+<button id="backToMenu" class="text-button" type="button">← Kembali ke menu paket</button><h2>Masuk Tryout 1</h2><p>Isi identitas dengan benar dan masukkan token bersama yang diberikan guru.</p>
 <form id="startForm">
   <label>Asal sekolah
     <select id="school" required>
