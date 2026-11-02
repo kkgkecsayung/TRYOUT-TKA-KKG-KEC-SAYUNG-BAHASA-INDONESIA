@@ -1,8 +1,78 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Panel Guru - Tryout TKA SD</title><link rel="stylesheet" href="style.css"></head><body>
-<header class="top"><div class="wrap"><h1>Panel Guru</h1><p>Tryout TKA SD · Bahasa Indonesia</p></div></header><main class="wrap">
-<section id="loginPanel" class="card"><h2>Login Guru</h2><p>Gunakan akun guru yang sudah dibuat di Supabase Authentication.</p><form id="teacherLogin"><label>Email guru<input id="email" type="email" required autocomplete="username"></label><label>Kata sandi<input id="password" type="password" required autocomplete="current-password"></label><button class="primary" type="submit">Login</button></form><p id="loginMsg" class="message" role="status"></p></section>
-<section id="dashboard" class="hidden">
-<section class="card"><div class="quizHead"><h2>Rekap Nilai Siswa</h2><button id="logout" class="secondary">Keluar</button></div><p class="muted">Menampilkan maksimal 1.000 percobaan terbaru.</p><div class="actions"><button id="refresh" class="primary">Muat ulang rekap</button><button id="csv" class="secondary">Unduh CSV</button></div><div style="overflow-x:auto;margin-top:18px"><table id="resultsTable"><thead><tr><th>Asal sekolah</th><th>Nama siswa</th><th>No. absen</th><th>Nilai</th><th>Benar</th><th>Mulai</th><th>Selesai</th><th>Durasi</th><th>Status</th></tr></thead><tbody></tbody></table></div><p id="resultsMsg" class="message" role="status"></p></section>
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel Guru - Tryout TKA SD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Panel Guru</h1>
+      <p>Tryout TKA SD · Bahasa Indonesia</p>
+    </div>
+  </header>
 
-</section></main><footer><div class="wrap"><a href="./">← Kembali ke tryout siswa</a></div></footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="admin.js"></script></body></html>
+  <main class="wrap">
+    <section id="loginPanel" class="card">
+      <h2>Login Guru</h2>
+      <p>Gunakan akun guru yang sudah dibuat di Supabase Authentication.</p>
+      <form id="teacherLogin">
+        <label>Email guru
+          <input id="email" type="email" required autocomplete="username">
+        </label>
+        <label>Kata sandi
+          <input id="password" type="password" required autocomplete="current-password">
+        </label>
+        <button class="primary" type="submit">Login</button>
+      </form>
+      <p id="loginMsg" class="message" role="status"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <section class="card">
+        <div class="quizHead">
+          <h2>Rekap Nilai Siswa</h2>
+          <button id="logout" class="secondary">Keluar</button>
+        </div>
+        <p class="muted">Menampilkan maksimal 1.000 percobaan terbaru.</p>
+        <div class="actions">
+          <button id="refresh" class="primary">Muat ulang rekap</button>
+          <button id="csv" class="secondary">Unduh CSV</button>
+        </div>
+
+        <div style="overflow-x:auto;margin-top:18px">
+          <table id="resultsTable">
+            <thead>
+              <tr>
+                <th>Asal sekolah</th>
+                <th>Nama siswa</th>
+                <th>No. absen</th>
+                <th>Paket Tryout</th>
+                <th>Nilai</th>
+                <th>Benar</th>
+                <th>Mulai</th>
+                <th>Selesai</th>
+                <th>Durasi</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p id="resultsMsg" class="message" role="status"></p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a href="./">← Kembali ke tryout siswa</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
